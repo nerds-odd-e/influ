@@ -1,4 +1,4 @@
 Feature: non Feature
 
   Scenario: a Scenario
-    Given this step exist
+    Given this step exists
