@@ -13,7 +13,7 @@ jobs:
           java-version: '11'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.0.5'
+          flutter-version: '2.5.3'
       - run: flutter pub get
       - run: flutter test
   e2e_test:
@@ -26,6 +26,6 @@ jobs:
           java-version: '11'
       - uses: subosito/flutter-action@v1
         with:
-          flutter-version: '2.0.5'
+          flutter-version: '2.5.3'
       - run: flutter pub get
       - run: dart run --no-sound-null-safety e2e/app_test.dart
