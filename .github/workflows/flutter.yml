@@ -28,4 +28,4 @@ jobs:
         with:
           flutter-version: '2.5.3'
       - run: flutter pub get
-      - run: dart run --no-sound-null-safety e2e/app_test.dart
+      - run: dart --no-sound-null-safety e2e/app_test.dart
