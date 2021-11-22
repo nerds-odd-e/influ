@@ -31,4 +31,4 @@ jobs:
         with:
           model: 'iPhone 8'
       - run: flutter pub get
-      - run: flutter run test_driver/app_test.dart
+      # - run: flutter run test_driver/app_test.dart
