@@ -27,5 +27,8 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.5.3'
+      - uses: futureware-tech/simulator-action@v1
+        with:
+          model: 'iPhone 8'
       - run: flutter pub get
       - run: dart --no-sound-null-safety e2e/app_test.dart
