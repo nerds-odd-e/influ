@@ -6,7 +6,7 @@ import 'steps/my_steps.dart';
 
 Future<void> main() {
   final config = FlutterTestConfiguration()
-    ..features = [RegExp('e2e/features/*.*.feature')]
+    ..features = [RegExp('test_driver/features/*.*.feature')]
     ..reporters = [
       ProgressReporter(),
       TestRunSummaryReporter(),
@@ -15,7 +15,7 @@ Future<void> main() {
     // ..hooks = [HookExample()]
     ..stepDefinitions = [MySteps()]
     ..restartAppBetweenScenarios = true
-    ..targetAppPath = "e2e/app.dart";
+    ..targetAppPath = "test_driver/app.dart";
   // ..tagExpression = "@smoke" // uncomment to see an example of running scenarios based on tag expressions
   return GherkinRunner().execute(config);
 }
