@@ -89,5 +89,6 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           profile: Nexus 6
-          script: flutter devices
-          script: dart --verbose test_driver/app_test.dart
+          script: |
+            flutter devices
+            dart --verbose test_driver/app_test.dart
