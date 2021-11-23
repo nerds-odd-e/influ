@@ -45,10 +45,11 @@ jobs:
       - uses: browser-actions/setup-chrome@latest
       - uses: subosito/flutter-action@v1
       - run: flutter doctor
+      - run: flutter config --enable-web  
       - run: chromedriver --version  
       - run: flutter pub get
       # - run: chromedriver --port=4444 --disable-gpu  
-      - run: chromedriver --port=4444 & flutter drive --verbose --target=test_driver/app.dart -d web-server
+      - run: chromedriver --port=4444 & sleep 1000 & flutter drive --verbose -d web-server --target=test_driver/app.dart 
 
   drive_ios:
     strategy:
