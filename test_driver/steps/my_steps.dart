@@ -6,7 +6,7 @@ StepDefinitionGeneric MySteps() {
   return when<FlutterWorld>(
     'this step exists',
     (context) async {
-      final locator = find.byValueKey('xxx');
+      final locator = find.byValueKey('xxx11');
       for (var i = 0; i < 3; i += 1) {
         await FlutterDriverUtils.tap(context.world.driver, locator);
       }
