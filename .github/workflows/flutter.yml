@@ -65,10 +65,11 @@ jobs:
         with:
           flutter-version: '2.5.3'
       - run: flutter pub get
+      - run: flutter devices
       - run: dart --verbose test_driver/app_test.dart
 
   drive_android:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     #creates a build matrix for your jobs
     strategy:
       #set of different configurations of the virtual environment.
@@ -88,4 +89,5 @@ jobs:
           target: ${{ matrix.target }}
           arch: x86_64
           profile: Nexus 6
+          script: flutter devices
           script: dart --verbose test_driver/app_test.dart
