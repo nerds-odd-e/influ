@@ -31,9 +31,9 @@ jobs:
       - run: flutter pub get
       - run: flutter doctor
       - run: flutter devices
-      # - uses: futureware-tech/simulator-action@v1
-      #   with:
-      #     model: 'iPhone 12'
+      - uses: futureware-tech/simulator-action@v1
+        with:
+          model: 'iPhone 12'
       - run: flutter doctor
       - run: flutter devices
       - run: dart --verbose test_driver/app_test.dart
