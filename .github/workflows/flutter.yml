@@ -43,6 +43,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: browser-actions/setup-chrome@latest
+      - uses: subosito/flutter-action@v1
       - run: flutter doctor
       - run: chromedriver --version
       - run: flutter pub get
