@@ -32,7 +32,7 @@ jobs:
       - run: flutter devices
       - uses: futureware-tech/simulator-action@v1
         with:
-          model: 'iPhone 8'
+          model: 'iPhone 13'
       - run: flutter doctor
       - run: flutter devices
       - run: dart test_driver/app_test.dart
