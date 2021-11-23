@@ -15,6 +15,7 @@ Future<void> main() {
     // ..hooks = [HookExample()]
     ..stepDefinitions = [MySteps()]
     ..restartAppBetweenScenarios = true
+    ..targetDeviceId = '122D56DA-57D2-4253-B058-9E6EB8722DE0'
     ..targetAppPath = "test_driver/app.dart";
   // ..tagExpression = "@smoke" // uncomment to see an example of running scenarios based on tag expressions
   return GherkinRunner().execute(config);
