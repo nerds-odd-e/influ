@@ -39,7 +39,7 @@ jobs:
   #     - run: flutter devices
   #     - run: dart --verbose test_driver/app_test.dart
   drive_browser:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - uses: browser-actions/setup-chrome@latest
