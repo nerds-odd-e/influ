@@ -35,4 +35,4 @@ jobs:
           model: 'iPhone 13'
       - run: flutter doctor
       - run: flutter devices
-      - run: dart test_driver/app_test.dart
+      - run: dart --verbose test_driver/app_test.dart
