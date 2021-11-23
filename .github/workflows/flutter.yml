@@ -27,8 +27,12 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.5.3'
+      - run: flutter pub get
+      - run: flutter doctor
+      - run: flutter devices
       - uses: futureware-tech/simulator-action@v1
         with:
           model: 'iPhone 8'
-      - run: flutter pub get
+      - run: flutter doctor
+      - run: flutter devices
       - run: dart test_driver/app_test.dart
