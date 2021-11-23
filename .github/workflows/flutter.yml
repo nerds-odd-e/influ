@@ -48,7 +48,7 @@ jobs:
       - run: chromedriver --version  
       - run: flutter pub get
       # - run: chromedriver --port=4444 --disable-gpu  
-      - run: flutter drive --verbose --target=test_driver/app.dart -d chrome
+      - run: chromedriver --port=4444 & flutter drive --verbose --target=test_driver/app.dart -d chrome
 
   drive_ios:
     strategy:
