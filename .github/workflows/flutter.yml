@@ -39,7 +39,7 @@ jobs:
   #     - run: flutter devices
   #     - run: dart --verbose test_driver/app_test.dart
 
-drive_ios:
+  drive_ios:
     strategy:
       matrix:
         device:
@@ -66,9 +66,6 @@ drive_ios:
           flutter-version: '2.5.3'
       - run: flutter pub get
       - run: dart --verbose test_driver/app_test.dart
-
-
-
 
   drive_android:
     runs-on: macos-latest
