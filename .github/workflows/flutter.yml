@@ -42,14 +42,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - uses: browser-actions/setup-chrome@latest
+      #- uses: browser-actions/setup-chrome@latest
       - uses: subosito/flutter-action@v1
       - run: flutter doctor
       - run: flutter config --enable-web  
       - run: chromedriver --version  
       - run: flutter pub get
       # - run: chromedriver --port=4444 --disable-gpu  
-      - run: chromedriver --port=4444 & sleep 1000 & flutter drive --verbose -d web-server --headless --browser-name=chrome --chrome-binary=/opt/hostedtoolcache/chromium/latest/x64/chrome --target=test_driver/app.dart 
+      - run: chromedriver --port=4444 & sleep 1000 & flutter drive --verbose -d web-server --headless --target=test_driver/app.dart 
 
   drive_ios:
     strategy:
