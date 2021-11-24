@@ -1,10 +1,13 @@
 import 'dart:async';
 import 'package:flutter_gherkin/flutter_gherkin.dart';
+import 'package:integration_test/integration_test.dart';
 import 'package:gherkin/gherkin.dart';
 // import 'hooks/hook_example.dart';
 import 'steps/my_steps.dart';
 
 Future<void> main() {
+  IntegrationTestWidgetsFlutterBinding.ensureInitialized(); // NEW
+
   final config = FlutterTestConfiguration()
     ..features = [RegExp('test_driver/features/*.*.feature')]
     ..reporters = [
