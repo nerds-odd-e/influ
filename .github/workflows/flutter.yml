@@ -47,10 +47,6 @@ jobs:
         with:
     # Optional: do not specify to match Chrome's version
           chromedriver-version: '97.0.4692.20'
-      - run: |
-          export DISPLAY=:99
-          chromedriver --url-base=/wd/hub --port=4444 &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & # optional
       - uses: subosito/flutter-action@v1
         with:
           flutter-version: '2.5.3'
@@ -59,7 +55,10 @@ jobs:
       - run: chromedriver --version  
       - run: flutter pub get
       # - run: chromedriver --port=4444 --disable-gpu  
-      - run: flutter drive --verbose  -d web-server --target=test_driver/app.dart 
+      - run: |
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub --port=4444 &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & flutter drive --verbose  -d web-server --target=test_driver/app.dart 
 
   drive_ios:
     strategy:
