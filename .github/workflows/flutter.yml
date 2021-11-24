@@ -51,14 +51,14 @@ jobs:
         with:
           flutter-version: '2.5.3'
       - run: flutter doctor
-      - run: flutter config --enable-web  
       - run: chromedriver --version  
       - run: flutter pub get
+      - run: flutter config --enable-web  
       # - run: chromedriver --port=4444 --disable-gpu  
       - run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub --port=4444 &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & flutter drive --verbose  -d web-server --target=test_driver/app.dart 
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 & flutter drive --verbose  -d web-server --driver=test_driver/integration_test.dart --target=test_driver/app.dart 
 
   drive_ios:
     strategy:
