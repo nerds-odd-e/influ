@@ -19,15 +19,10 @@ class GameOfLife {
 
   GameOfLife.of(this.lives) {}
 
-  GameOfLife get nextGeneration {
-    return this;
-  }
-
-  bool alive(Cell cell) {
-    if(cell.adjacentCells.intersection(lives.toSet()).length == 2)
-      return true;
-    
-    return false;
+  bool survive(Cell cell) {
+    int neighboursCount = cell.adjacentCells.intersection(lives.toSet()).length;
+    if(lives.contains(cell) && neighboursCount == 2) return true;
+    return neighboursCount == 3;
   }
 }
 
@@ -40,9 +35,16 @@ class Cell {
   bool operator ==(other) => other is Cell && x == other.x && y == other.y;
   int get hashCode => x * 10000000 + y;
 
-  
-  Cell get bottomRight {
+  Cell get topRight {
     return Cell(x+1, y+1);
+  }
+
+  Cell get bottomLeft {
+    return Cell(x-1, y-1);
+  }
+
+  Cell get bottomRight {
+    return Cell(x+1, y-1);
   }
 
   Cell get centerRight {
@@ -50,7 +52,7 @@ class Cell {
   }
 
   Set<Cell> get adjacentCells {
-    return {bottomRight, centerRight};
+    return {topRight, bottomRight, centerRight, bottomLeft};
   }
 
 }
@@ -60,20 +62,40 @@ class Cell {
  */
 void main() {
   final subject = Cell(2, 30);
-  test('a live with no neighbour must die', () async {
-    expect(GameOfLife.of([subject]).nextGeneration.alive(subject), false);
+  test('a cell with no neighbour must die', () async {
+    expect(GameOfLife.of([subject]).survive(subject), false);
   });
 
-  test('a live with one neighbour must die', () async {
-    expect(GameOfLife.of([subject,subject.bottomRight]).nextGeneration.alive(subject), false);
+  test('a cell with one neighbour must die', () async {
+    expect(GameOfLife.of([subject,subject.bottomRight]).survive(subject), false);
   });
 
-  test('cell with one live neighbour and one remote neighbour must die', () async {
-    expect(GameOfLife.of([subject, subject.centerRight, subject.centerRight.centerRight]).nextGeneration.alive(subject), false);
+  test('a cell with one neighbour and one remote neighbour must die', () async {
+    expect(GameOfLife.of([subject, subject.centerRight, subject.centerRight.centerRight]).survive(subject), false);
   });
 
-  test('cell with two live neighbours lives', () async {
-    expect(GameOfLife.of([subject, ...subject.adjacentCells.take(2)]).nextGeneration.alive(subject), true);
+  test('a cell with two neighbours must survive', () async {
+    expect(GameOfLife.of([subject, ...subject.adjacentCells.take(2)]).survive(subject), true);
+  });
+
+  test('a cell with three neighbours must survive', () async {
+    expect(GameOfLife.of([subject, ...subject.adjacentCells.take(3)]).survive(subject), true);
+  });
+
+  test('a cells top-right is bottom-left return to the same cell', () async {
+    expect(subject.topRight.bottomLeft, equals(subject));
+  });
+
+  test('a cell with four neighbours must die', () async {
+    expect(GameOfLife.of([subject, ...subject.adjacentCells.take(4)]).survive(subject), false);
+  });
+
+  test('a cell with three neighbours will revive', () async {
+    expect(GameOfLife.of([...subject.adjacentCells.take(3)]).survive(subject), true);
+  });
+
+  test('a cell with two neighbours must not revive', () async {
+    expect(GameOfLife.of([...subject.adjacentCells.take(2)]).survive(subject), false);
   });
 
 }
