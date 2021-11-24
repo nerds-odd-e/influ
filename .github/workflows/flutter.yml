@@ -44,6 +44,8 @@ jobs:
       - uses: actions/checkout@v1
       #- uses: browser-actions/setup-chrome@latest
       - uses: subosito/flutter-action@v1
+        with:
+          flutter-version: '2.5.3'
       - run: flutter doctor
       - run: flutter config --enable-web  
       - run: chromedriver --version  
