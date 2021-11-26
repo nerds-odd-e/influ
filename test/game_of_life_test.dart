@@ -24,6 +24,15 @@ class GameOfLife {
     if(lives.contains(cell) && neighboursCount == 2) return true;
     return neighboursCount == 3;
   }
+
+  String render(int width, int height) {
+    if(lives.length == 0) {
+      return 'O' * width;
+    }
+
+    return ('O' * width).replaceRange(lives[0].x, lives[0].x + 1, 'X');
+
+  }
 }
 
 class Cell {
@@ -61,7 +70,7 @@ class Cell {
   []
  */
 void main() {
-  final subject = Cell(2, 30);
+  final subject = Cell(1, 2);
   test('a cell with no neighbour must die', () async {
     expect(GameOfLife.of([subject]).survive(subject), false);
   });
@@ -96,6 +105,34 @@ void main() {
 
   test('a cell with two neighbours must not revive', () async {
     expect(GameOfLife.of([...subject.adjacentCells.take(2)]).survive(subject), false);
+  });
+
+  test('render a game', () async {
+    expect(GameOfLife.of([Cell(0, 0)]).render(1, 1), 'X');
+  });
+
+  test('render a game without any alive cells', () async {
+    expect(GameOfLife.of([]).render(1, 1), 'O');
+  });
+
+  test('render a game without any alive cells but on bigger canvas', () async {
+    expect(GameOfLife.of([]).render(2, 1), 'OO');
+  });
+
+  test('render a game without any alive cells but on bigger canvas', () async {
+    expect(GameOfLife.of([]).render(3, 1), 'OOO');
+  });
+
+  test('render a game without any alive cells but on bigger canvas', () async {
+    expect(GameOfLife.of([Cell(0, 0)]).render(3, 1), 'XOO');
+  });
+
+  test('render a game without any alive cells but on bigger canvas', () async {
+    expect(GameOfLife.of([Cell(1, 0)]).render(3, 1), 'OXO');
+  });
+
+   test('render a game without any alive cells but on bigger canvas - 1', () async {
+    expect(GameOfLife.of([Cell(2, 0)]).render(3, 1), 'OOX');
   });
 
 }
